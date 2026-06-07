@@ -22,7 +22,6 @@ import schedule
 # CONSTANTES GLOBALES
 
 
-# Procesos críticos que NO deben finalizarse
 PROCESOS_CRITICOS = [
     "system", "systemd", "init", "kernel", "svchost",
     "winlogon", "csrss", "lsass", "smss", "services",
@@ -50,8 +49,6 @@ CATEGORIAS = {
     "Comprimidos":       [".zip", ".rar", ".7z", ".tar", ".gz"],
 }
 
-
-# UTILIDADES
 
 def limpiar_pantalla():
     """Limpia la consola según el sistema operativo."""
@@ -93,7 +90,7 @@ def modulo_informacion_sistema():
     """Muestra información completa del equipo y sus recursos."""
     encabezado("INFORMACIÓN DEL SISTEMA")
 
-    # --- Información del equipo ---
+    # Información del equipo 
     print("  [EQUIPO]")
     print(f"  Nombre del equipo   : {socket.gethostname()}")
     print(f"  Usuario actual      : {os.getlogin()}")
@@ -138,7 +135,6 @@ def modulo_informacion_sistema():
 
 # MÓDULO 2 – MONITOR DE PROCESOS
 
-
 def obtener_procesos():
     """Retorna lista de procesos activos ordenados por uso de CPU."""
     procesos = []
@@ -162,7 +158,6 @@ def modulo_monitor_procesos():
         encabezado("MONITOR DE PROCESOS")
         procesos = obtener_procesos()
 
-        # Mostrar los 20 procesos con mayor consumo de CPU
         print(f"  {'PID':<8} {'NOMBRE':<35} {'CPU %':<10} {'MEM %':<10}")
         separador("-")
         for p in procesos[:20]:
@@ -280,7 +275,6 @@ def modulo_organizador_archivos():
 
 
 # MÓDULO 4 – SISTEMA DE COPIAS DE SEGURIDAD
-
 def registrar_backup(log_path, origen, destino, copiados, errores):
     """Registra los detalles del backup en un archivo de log."""
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -441,8 +435,6 @@ def modulo_generacion_reportes(silencioso=False, carpeta_destino=None):
     else:
         print(f"  [Auto] Reporte generado: {ruta}")
 
-
-
 # MÓDULO 6 – AUTOMATIZACIÓN PROGRAMADA
 
 # Variable global para controlar el hilo de automatización
@@ -548,10 +540,6 @@ def menu_principal():
             print("  Opción inválida. Intente de nuevo.")
             time.sleep(1)
 
-
-# ============================================================
-# PUNTO DE ENTRADA
-# ============================================================
 
 if __name__ == "__main__":
     menu_principal()
